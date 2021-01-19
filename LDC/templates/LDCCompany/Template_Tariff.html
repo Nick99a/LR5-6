@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Тарифы</title>
+        <style>
+        .myfield{
+            border:1px solid #ccc;
+            border-radius:5px;
+            height:15px;
+            width:200px;
+            margin: 10px 10px 10px 0;
+            text-align: center;
+        }
+        .button {
+            background-color: #8019a6;
+            border: 7px solid #6f258a;
+            color: white;
+            padding: 20px 30px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 15px;
+        }
+        body {
+            background:  #b881cc ;
+            padding: 10px;
+            background-repeat: no-repeat;
+            }
+        label {
+            font-family: Times New Roman;
+            }
+            td {
+            font-family: Calibri;
+            }
+            th{
+            font-family: Calibri;
+            }
+            #b{
+            border: 4px solid #8019a6;
+            }
+    </style>
+</head>
+<body>
+<div id="header" >
+        <h3 align="right"><a href="/admin/logout/">выйти из аккаунта</a></h3>
+        <h1 align="center">Тарифы</h1>
+        <h3 align="center"><a href = "{% url 'home' %}">назад</a></h3>
+</div>
+
+<table border="1" width="70%" align="center">
+    <tr>
+        <th align="center" width="50%">
+    <form method="POST" action="addt/">
+        {% csrf_token %}
+        <table>
+            {{ form }}
+        </table>
+        <input class = "button" type="submit" value="Добавить тариф">
+    </form>
+    <br>
+    <br>
+    <form method="POST" action="delt/">
+        {% csrf_token %}
+        <label>Введите id</label>
+        <input class = "myfield" type= "number" name="delname"><br>
+        <input class = "button" type= "submit" value="Удалить тариф">
+    </form>
+    <br>
+    <br>
+    <form method="POST" action="upt/">
+        {% csrf_token %}
+        <label>Введите id</label>
+        <input class="myfield" type= "number" name="upname"><br>
+        <table>
+            {{ form }}
+        </table>
+        <input class = "button" type= "submit" value="Изменить тариф">
+    </form>
+</table>
+
+    <tr>
+        <th align="center" width="50%">
+        <h1 align="center"> Список тарифови</h1>
+     <table border="1" width="70%" align="center">
+    <form method="POST" action="show/">
+        {% csrf_token %}
+        <table id='b' border=1 width="70%" align="center">
+            <tr align="center" bgcolor="#8019a6">
+                <th>Id</th>
+                <th>Дата</th>
+                <th>Поселение</th>
+                <th>Стоимость в минуту</th>
+                <th>Льготная стоимость (с 20 до 6)</th>
+            </tr>
+        {% for i in data_show %}
+            <tr align="center">
+                <td>{{ i.id }}</td>
+                <td>{{ i.date }}</td>
+                <td>{{ i.settlment }}</td>
+                <td>{{ i.cost_per_minute }}</td>
+                <td>{{ i.preferential_cost }}</td>
+            </tr>
+        {% endfor %}
+        </table>
+    </form>
+</th>
+    </tr>
+</table>
+</body>
+</html>
+
+
+
+
+

@@ -1,0 +1,58 @@
+<head>
+    <style>
+        .myfield{
+            border:1px solid #ccc;
+            border-radius:5px;
+            height:15px;
+            width:200px;
+            margin: 10px 10px 10px 0;
+            text-align: center;
+        }
+        .button {
+            background-color: #8019a6;
+            border: 1px solid #6f258a;
+            color: white;
+            padding: 20px 30px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 15px;
+        }
+        body {
+            background:  #b881cc ;
+            padding: 10px;
+            background-repeat: no-repeat;
+            }
+        label {
+            font-family: Times New Roman;
+            }
+            td {
+            font-family: Calibri;
+            padding: 15px 32px;
+            }
+            th{
+            font-family: Calibri;
+            }
+    </style>
+</head>
+
+  <form method="post" action="{% url 'login' %}" align="center">
+    {% csrf_token %}
+    <table align="center">
+      <tr>
+        <td >{{ form.username.label_tag }}</td>
+        <td>{{ form.username }}</td>
+      </tr>
+      <tr>
+        <td>{{ form.password.label_tag }}</td>
+        <td>{{ form.password }}</td>
+      </tr>
+    </table>
+    <input class = 'button' type="submit" value="login" />
+    <input class = 'myfield' type="hidden" name="next" value="{{ next }}" />
+    <h3 align="center"><a href = "{% url 'great' %}">назад</a></h3>
+
+  </form>
+
+
+
